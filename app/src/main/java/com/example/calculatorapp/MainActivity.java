@@ -1,18 +1,30 @@
 package com.example.calculatorapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    String[] operators = {"+","-","*","/"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Spinner op =  (Spinner)findViewById(R.id.operator);
+        op.setOnItemSelectedListener(this);
+
+        ArrayAdapter ad = new ArrayAdapter(this, android.R.layout.simple_spinner_item, operators);
+
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        op.setAdapter(ad);
     }
 
     public void operation()
