@@ -114,7 +114,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String tempInput = input.split();
         for (int i = 0; i < tempInput.length();i++)
         {
-            if (tempInput[i] != "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "0")
+            //if (tempInput[i] != "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "0")
+            if (input == (int)input)
             {
 
                 break;
