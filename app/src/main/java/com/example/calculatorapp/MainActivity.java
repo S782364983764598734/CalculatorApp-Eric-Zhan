@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         {
             findDifference();
         }
+        else if (pos == 2)
+        {
+            findProduct();
+        }
+        else if (pos == 3)
+        {
+            findQuotient();
+        }
     }
 
     public void findSum() {
@@ -65,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         numberSumTV.setText("" + diff);
     }
-    public void findProd() {
+    public void findProduct() {
         EditText number1ET = findViewById(R.id.num1ET);
         EditText number2ET = findViewById(R.id.num2ET);
         TextView numberSumTV = findViewById(R.id.resultTV);
@@ -99,5 +107,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+    //this function returns if user input is a number.
+    public void checkNum(String input)
+    {
+        String tempInput = input.split();
+        for (int i = 0; i < tempInput.length();i++)
+        {
+            if (tempInput[i] != "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "0")
+            {
+
+                break;
+            }
+        }
     }
 }
