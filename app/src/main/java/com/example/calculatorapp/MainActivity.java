@@ -14,54 +14,86 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String[] operators = {"+","-","*","/"};
+    int pos = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //initializes Spinner class in order for users to select the operator that they want
+        //https://www.youtube.com/watch?v=on_OrrX7Nw4
         Spinner op = (Spinner)findViewById(R.id.operator);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.operator, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         op.setAdapter(adapter);
         op.setOnItemSelectedListener(this);
-        @Override
-            public void operation(View view)
-            {
-                String current = op.getSelectedItem().toString();
-            }
     }
 
     //this class determines which operator to use, depending on what operator the user chooses
+    //https://stackoverflow.com/questions/10331854/how-to-get-spinner-selected-item-value-to-string
+    public void operation(View view)
+    {
+        if (pos == 0)
+        {
+            findSum();
+        }
+        else if (pos == 1)
+        {
+            findDifference();
+        }
+    }
 
-
-    public void findSum(View view) {
+    public void findSum() {
         EditText number1ET = findViewById(R.id.num1ET);
         EditText number2ET = findViewById(R.id.num2ET);
         TextView numberSumTV = findViewById(R.id.resultTV);
 
-        int num1 = Integer.parseInt((number1ET.getText().toString()));
-        int num2 = Integer.parseInt((number2ET.getText().toString()));
-        int sum = num1 + num2;
+        double num1 = Integer.parseInt((number1ET.getText().toString()));
+        double num2 = Integer.parseInt((number2ET.getText().toString()));
+        double sum = num1 + num2;
 
         numberSumTV.setText("" + sum);
     }
 
-    public void findDifference(View view) {
+    public void findDifference() {
         EditText number1ET = findViewById(R.id.num1ET);
         EditText number2ET = findViewById(R.id.num2ET);
         TextView numberSumTV = findViewById(R.id.resultTV);
 
-        int num1 = Integer.parseInt((number1ET.getText().toString()));
-        int num2 = Integer.parseInt((number2ET.getText().toString()));
-        int diff = num1 - num2;
+        double num1 = Integer.parseInt((number1ET.getText().toString()));
+        double num2 = Integer.parseInt((number2ET.getText().toString()));
+        double diff = num1 - num2;
 
         numberSumTV.setText("" + diff);
+    }
+    public void findProd() {
+        EditText number1ET = findViewById(R.id.num1ET);
+        EditText number2ET = findViewById(R.id.num2ET);
+        TextView numberSumTV = findViewById(R.id.resultTV);
+
+        double num1 = Integer.parseInt((number1ET.getText().toString()));
+        double num2 = Integer.parseInt((number2ET.getText().toString()));
+        double prod = num1 * num2;
+
+        numberSumTV.setText("" + prod);
+    }
+    public void findQuotient() {
+        EditText number1ET = findViewById(R.id.num1ET);
+        EditText number2ET = findViewById(R.id.num2ET);
+        TextView numberSumTV = findViewById(R.id.resultTV);
+
+        double num1 = Integer.parseInt((number1ET.getText().toString()));
+        double num2 = Integer.parseInt((number2ET.getText().toString()));
+        double quot =  num1 / num2;
+
+        numberSumTV.setText("" + quot);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(parent.getContext(),text + " position is " + position,Toast.LENGTH_SHORT).show();
+        pos = position;
+
     }
 
     @Override
