@@ -55,11 +55,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         EditText number2ET = findViewById(R.id.num2ET);
         TextView numberSumTV = findViewById(R.id.resultTV);
 
-        double num1 = Integer.parseInt((number1ET.getText().toString()));
-        double num2 = Integer.parseInt((number2ET.getText().toString()));
-        double sum = num1 + num2;
+        if (checkNum(number1ET.getText().toString()) && checkNum(number2ET.getText().toString()))
+        {
+            double num1 = Integer.parseInt((number1ET.getText().toString()));
+            double num2 = Integer.parseInt((number2ET.getText().toString()));
+            double sum = num1 + num2;
+            numberSumTV.setText("" + sum);
+        }
+        else
+        {
+            numberSumTV.setText("ENTER NUMERIC VALUES  ");
+        }
 
-        numberSumTV.setText("" + sum);
     }
 
     public void findDifference() {
@@ -109,17 +116,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
     //this function returns if user input is a number.
-    public void checkNum(String input)
+    public boolean checkNum(String input)
     {
-        String tempInput = input.split();
-        for (int i = 0; i < tempInput.length();i++)
+        String[] tempInput = input.split("");
+        int temp = 0;
+        for (int i = 0; i < tempInput.length;i++)
         {
-            //if (tempInput[i] != "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "0")
-            if (input == (int)input)
+            if (tempInput[i].equals("1") || tempInput[i].equals("2") || tempInput[i].equals("3") || tempInput[i].equals("4")|| tempInput[i].equals("5")|| tempInput[i].equals("6")|| tempInput[i].equals("7")|| tempInput[i].equals("8")|| tempInput[i].equals("9")|| tempInput[i].equals("0"))
             {
-
-                break;
+                temp ++;
+            }
+            else
+            {
+                temp --;
             }
         }
+        if(temp == tempInput.length)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+
     }
 }
